@@ -1,32 +1,3 @@
-# from sqlmodel import SQLModel, create_engine, Session
-# from app.core.config import settings
-
-# engine = create_engine(settings.DATABASE_URL, echo=False, pool_pre_ping=True)
-
-# def init_db():
-#     """Create all tables from SQLModel metadata"""
-#     SQLModel.metadata.create_all(engine)
-
-# def get_db():
-#     """Dependency for FastAPI routes"""
-#     with Session(engine) as session:
-#         yield session
-# from sqlmodel import SQLModel, create_engine, Session
-# from app.core.config import settings
-
-# # ✅ Database connection (PostgreSQL)
-# engine = create_engine(settings.DATABASE_URL, echo=False, pool_pre_ping=True)
-
-# def init_db():
-#     """Create all tables from SQLModel models"""
-#     SQLModel.metadata.create_all(engine)
-
-# def get_session():
-#     """Dependency for FastAPI routes"""
-#     with Session(engine) as session:
-#         yield session
-
-
 from sqlmodel import SQLModel, create_engine, Session, select
 from app.core.config import settings
 from app.models.db_models import User  

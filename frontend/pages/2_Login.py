@@ -1,6 +1,7 @@
 import streamlit as st
 from utils.api_helper import login
 
+
 st.set_page_config(page_title="Login", page_icon="🔐")
 
 st.title("🔐 Login")
@@ -14,13 +15,13 @@ if st.button("Login"):
     if response.status_code == 200:
         st.session_state.token = response.json().get("token")
         st.success("Login Successful!")
-        st.switch_page("pages/5_Dashboard.py")
+        st.switch_page("5_Dashboard")
     else:
         st.error("Invalid credentials")
 
 if st.button("Forgot Password?"):
-    st.switch_page("pages/4_Forgot_Password.py")
+    st.switch_page("4_Forgot_Password")
 
 st.write("Don't have an account?")
 if st.button("Create Account"):
-    st.switch_page("pages/3_Signup.py")
+    st.switch_page("3_Signup")

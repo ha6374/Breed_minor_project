@@ -1,20 +1,3 @@
-# from pydantic_settings import BaseSettings
-# import os
-
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# class Settings(BaseSettings):
-#     DATABASE_URL: str = "postgresql+psycopg2://postgres:123456@localhost:5432/ai_breed_db"
-#     SECRET_KEY: str = "supersecretkey"
-#     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
-
-#     MODEL_PATH: str = os.path.join(BASE_DIR, "models", "custom_cnn_best.h5")
-#     LABELS_PATH: str = os.path.join(BASE_DIR, "models", "labels.json")
-
-#     class Config:
-#         env_file = ".env"
-
-# settings = Settings()
 import os
 from typing import ClassVar
 from pydantic_settings import BaseSettings

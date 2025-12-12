@@ -7,8 +7,11 @@ from pathlib import Path
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 class Settings(BaseSettings):
-    DATABASE_URL: str = "postgresql+psycopg2://postgres:123456@localhost:5432/ai_breed_db"
-    SECRET_KEY: str = "supersecretkey"
+    # DATABASE_URL: str = "postgresql+psycopg2://postgres:123456@localhost:5432/ai_breed_db"
+    # SECRET_KEY: str = "supersecretkey"
+    DATABASE_URL: str = "postgresql://ai_breed_db_user:6mXe301lqmS7rzgWFc8C8BXjSFdBZcb7@dpg-d4u53jvgi27c73fdgm60-a/ai_breed_db"
+    SECRET_KEY: str = "6cdda09b0c2a5c43acc79f7345bfd1ec58cf45391d50bda4b65fd8b89d5c1156"
+
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24
 
     # FIXED: must be annotated for Pydantic v2

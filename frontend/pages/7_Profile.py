@@ -8,7 +8,7 @@ st.set_page_config(page_title="Profile", page_icon="👤", layout="centered")
 # ==========================
 if "token" not in st.session_state or not st.session_state.token:
     st.warning("Please login first.")
-    st.switch_page("2_Login")
+    st.switch_page("pages/2_Login.py")
 
 # ==========================
 # SIDEBAR
@@ -18,15 +18,15 @@ with st.sidebar:
     st.header("👤 Profile Menu")
 
     if st.button("🏠 Dashboard"):
-        st.switch_page("5_Dashboard.py")
+        st.switch_page("pages/5_Dashboard.py")
 
     if st.button("🐄 Breed Prediction"):
-        st.switch_page("6_Breed_Prediction")
+        st.switch_page("pages/6_Breed_Prediction")
 
     st.write("---")
     if st.button("🚪 Logout"):
         st.session_state.clear()
-        st.switch_page("2_Login.py")
+        st.switch_page("pages/2_Login.py")
 
 
 # ==========================

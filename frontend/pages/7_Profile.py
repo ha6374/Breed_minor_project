@@ -70,7 +70,7 @@ st.markdown('<div class="profile-card">', unsafe_allow_html=True)
 # PROFILE IMAGE
 profile_img = profile.get("profile_image")
 if profile_img:
-    st.image(f"http://127.0.0.1:8000/{profile_img}", width=150)
+    st.image(f"https://breed-minor-project.onrender.com/{profile_img}", width=150)
 else:
     st.image("https://cdn-icons-png.flaticon.com/512/1077/1077012.png", width=150)
 

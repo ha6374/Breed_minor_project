@@ -20,7 +20,7 @@ with st.sidebar:
     # with col1:
     if st.button("🔍 Predict Breed"):
           try:
-            st.switch_page("6_Breed_Prediction")
+            st.switch_page("pages/6_Breed_Prediction.py")
           except Exception as e:
             st.error(f"Navigation error: {e}")
 

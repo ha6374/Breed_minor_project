@@ -12,8 +12,8 @@ password = st.text_input("Password", type="password")
 if st.button("Login"):
     response = login(email, password)
 
-    if response is None:
-        st.error("❌ Server not responding. Please try again later.")
+    # if response is None:
+    #     st.error("❌ Server not responding. Please try again later.")
 
     elif response.status_code == 200:
         st.session_state.token = response.json().get("token")

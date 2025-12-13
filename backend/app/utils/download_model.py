@@ -8,7 +8,7 @@ MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
 # Google Drive direct download URLs
 MODEL_LINKS = {
-    "custom_cnn_best.h5": "https://drive.google.com/uc?export=download&id=1gUD3IqwR_7UK0exoCkCdjquFoDsWkWB8",
+    # "custom_cnn_best.h5": "https://drive.google.com/uc?export=download&id=1gUD3IqwR_7UK0exoCkCdjquFoDsWkWB8",
     "fine_tuned_model.h5": "https://drive.google.com/uc?export=download&id=1tG0nPBV4BdDUvQP2Hq7UJZQg5-DCyYdq",
     "labels.json": "https://drive.google.com/uc?export=download&id=1feEqBS6UtFBBdOEBCzaQXHsFjbbAScVi"
 }

@@ -14,6 +14,6 @@ if st.button("Signup"):
 
     if response.status_code == 200 or response.status_code == 201:
         st.success("Account created successfully!")
-        st.switch_page("pages/2_Login")
+        st.switch_page("pages/2_Login.py")
     else:
         st.error("Signup failed! Try again.")

@@ -240,7 +240,7 @@ def forgot_password(request: ForgotPasswordRequest):
 
     # Send email with reset link
     # reset_link = f"http://localhost:8501/8_reset_password?token={token}  # Frontend URL
-    reset_link = f"https://breed-minor-project.streamlit.app/8_reset_password?token={token}
+    reset_link = f"https://breed-minor-project.streamlit.app/8_reset_password?token={token}"
     
     send_reset_email(to_email=user.email, reset_link=reset_link)
 

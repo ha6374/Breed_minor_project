@@ -17,4 +17,5 @@ st.markdown("""
 
 time.sleep(2)
 
-st.switch_page("2_Login")
+st.switch_page("pages/2_Login.py")
+

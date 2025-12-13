@@ -5,7 +5,7 @@ st.set_page_config(page_title="Dashboard", page_icon="📊")
 
 # --- If user not logged in ---
 if "token" not in st.session_state or st.session_state.token is None:
-    st.switch_page("2_Login")
+    st.switch_page("pages/2_Login.py")
 
 # --- SIDEBAR ---
 with st.sidebar:
@@ -29,7 +29,7 @@ with st.sidebar:
     # Logout
     if st.button("🚪 Logout"):
         st.session_state.clear()
-        st.switch_page("2_Login")
+        st.switch_page("pages/2_Login.py")
 
 # --- MAIN PAGE ---
 st.title("📊 Dashboard")

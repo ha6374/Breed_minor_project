@@ -9,7 +9,7 @@ st.set_page_config(page_title="Breed Prediction", page_icon="🐄", layout="wide
 # ==========================
 if "token" not in st.session_state or st.session_state.token is None:
     st.warning("⚠️ Please login to access this page.")
-    st.switch_page("2_Login")
+    st.switch_page("pages/2_Login.py")
 
 # ==========================
 # SIDEBAR
@@ -19,12 +19,12 @@ with st.sidebar:
     st.header("🔍 Prediction Menu")
 
     if st.button("🏠 Dashboard"):
-        st.switch_page("5_Dashboard")
+        st.switch_page("pages/5_Dashboard.py")
 
     st.write("---")
     if st.button("🚪 Logout"):
         st.session_state.clear()
-        st.switch_page("2_Login")
+        st.switch_page("pages/2_Login.py")
 
 
 # ==========================

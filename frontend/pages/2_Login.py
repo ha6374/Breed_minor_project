@@ -15,7 +15,7 @@ if st.button("Login"):
     # if response is None:
     #     st.error("❌ Server not responding. Please try again later.")
 
-    elif response.status_code == 200:
+    if response.status_code == 200:
         st.session_state.token = response.json().get("token")
         st.success("Login Successful!")
         st.switch_page("pages/5_Dashboard.py")

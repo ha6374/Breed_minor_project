@@ -18,7 +18,7 @@ if st.button("Login"):
     if response.status_code == 200:
         st.session_state.token = response.json().get("token")
         st.success("Login Successful!")
-        st.switch_page("pages/5_Dashboard")
+        st.switch_page("pages/5_Dashboard.py")
     else:
         st.error("Invalid credentials")
 

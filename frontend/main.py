@@ -321,7 +321,7 @@ elif st.session_state.token:
     #           st.session_state.page = "6_Breed_Prediction"
     #           st.rerun()
     if st.button("🔍 Predict Breed", key="predict_dashboard"):
-        st.switch_page("pages/6_Breed_Prediction")
+        st.switch_page("pages/6_Breed_Prediction.py")
         
         
 

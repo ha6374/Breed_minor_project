@@ -119,7 +119,7 @@ st.set_page_config(
 if "token" in st.session_state and st.session_state.token:
     st.success("Already logged in! Redirecting to Dashboard...")
     time.sleep(1)
-    st.switch_page("pages/2_Dashboard.py")  # Dashboard page
+    st.switch_page("pages/5_Dashboard.py")  # Dashboard page
 
 # ==========================
 # INITIALIZE SPLASH FLAG

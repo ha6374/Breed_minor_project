@@ -180,7 +180,7 @@ if not st.session_state.seen_splash:
     with col2:
         if st.button("Get Started", key="splash_btn"):
             st.session_state.seen_splash = True
-            st.switch_page("2_Login")  # Login page
+            st.switch_page("Login")  # Login page
 
     st.markdown('</div>', unsafe_allow_html=True)
     st.stop()

@@ -119,7 +119,7 @@ st.set_page_config(
 if "token" in st.session_state and st.session_state.token:
     st.success("Already logged in! Redirecting to Dashboard...")
     time.sleep(1)
-    st.switch_page("5_Dashboard")  # Dashboard page
+    st.switch_page("Dashboard")  # Dashboard page
 
 # ==========================
 # INITIALIZE SPLASH FLAG
@@ -186,5 +186,5 @@ if not st.session_state.seen_splash:
     st.stop()
 else:
     # Splash already seen → go to login
-    st.switch_page("2_Login")
+    st.switch_page("Login")
 

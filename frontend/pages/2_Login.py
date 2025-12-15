@@ -44,10 +44,6 @@ password = st.text_input("🔑 Password", type="password")
 if st.button("Login"):
     response = login(email, password)
 
-    if response:
-        st.write("STATUS:", response.status_code)
-        st.write("BODY:", response.json())
-
 
     if response and response.status_code == 200:
         token = response.json().get("access_token")  # ✅ VERY IMPORTANT

@@ -1,37 +1,52 @@
+# import streamlit as st
+
+
+# st.set_page_config(page_title="Dashboard", page_icon="📊")
+
+# # --- If user not logged in ---
+# if "token" not in st.session_state or st.session_state.token is None:
+#     st.switch_page("pages/2_Login.py")
+#     st.stop()
+
+# # --- SIDEBAR ---
+# with st.sidebar:
+#     st.image("https://i.imgur.com/9B1xU6X.gif", width=120)
+#     st.subheader("👤 Profile")
+
+#     st.write("Logged in user")
+
+#     # 🐄 Breed Prediction (ONLY this on Dashboard)
+#     # col1, col2, col3 = st.columns([1, 1, 1])
+
+#     # with col1:
+#     if st.button("🔍 Predict Breed"):
+#           try:
+#             st.switch_page("pages/6_Breed_Prediction.py")
+#           except Exception as e:
+#             st.error(f"Navigation error: {e}")
+
+#     st.write("---")
+
+#     # Logout
+#     if st.button("🚪 Logout"):
+#         st.session_state.clear()
+#         st.switch_page("pages/2_Login.py")
+
+# # --- MAIN PAGE ---
+# st.title("📊 Dashboard")
+# st.write("Welcome to Pashudhan AI!")
+
 import streamlit as st
 
+st.set_page_config(page_title="Breed Prediction", page_icon="🔍")
 
-st.set_page_config(page_title="Dashboard", page_icon="📊")
-
-# --- If user not logged in ---
-if "token" not in st.session_state or st.session_state.token is None:
+if "token" not in st.session_state:
     st.switch_page("pages/2_Login.py")
-    st.stop()
 
-# --- SIDEBAR ---
-with st.sidebar:
-    st.image("https://i.imgur.com/9B1xU6X.gif", width=120)
-    st.subheader("👤 Profile")
+st.title("🔍 Breed Prediction")
 
-    st.write("Logged in user")
+st.info("Model integration yaha aayega")
 
-    # 🐄 Breed Prediction (ONLY this on Dashboard)
-    # col1, col2, col3 = st.columns([1, 1, 1])
+if st.button("⬅ Back to Dashboard"):
+    st.switch_page("pages/5_Dashboard.py")
 
-    # with col1:
-    if st.button("🔍 Predict Breed"):
-          try:
-            st.switch_page("pages/6_Breed_Prediction.py")
-          except Exception as e:
-            st.error(f"Navigation error: {e}")
-
-    st.write("---")
-
-    # Logout
-    if st.button("🚪 Logout"):
-        st.session_state.clear()
-        st.switch_page("pages/2_Login.py")
-
-# --- MAIN PAGE ---
-st.title("📊 Dashboard")
-st.write("Welcome to Pashudhan AI!")

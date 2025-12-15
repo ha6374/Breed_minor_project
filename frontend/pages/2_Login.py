@@ -28,13 +28,11 @@
 # st.write("Don't have an account?")
 # if st.button("Create Account"):
 #     st.switch_page("pages/3_Signup.py")
-
 import streamlit as st
 from utils.api_helper import login
 
 st.set_page_config(page_title="Login", page_icon="🔐")
 
-# 🔐 Token guard
 if "token" not in st.session_state:
     st.session_state.token = None
 
@@ -47,19 +45,17 @@ if st.button("Login"):
     response = login(email, password)
 
     if response and response.status_code == 200:
-        token = response.json().get("access_token")
+        token = response.json().get("access_token")  # ✅ VERY IMPORTANT
 
         if token:
             st.session_state.token = token
             st.success("✅ Login Successful")
             st.switch_page("pages/5_Dashboard.py")
         else:
-            st.error("❌ Token not received from server")
+            st.error("❌ access_token not received")
     else:
         st.error("❌ Invalid credentials")
 
-st.write("---")
 st.write("Don't have an account?")
 if st.button("Create Account"):
     st.switch_page("pages/3_Signup.py")
-

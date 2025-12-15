@@ -102,7 +102,6 @@
 # else:
 #     # Splash already seen → go to login
 #     st.switch_page("2_Login")
-
 import streamlit as st
 import os
 import time
@@ -119,7 +118,7 @@ st.set_page_config(
 if "token" in st.session_state and st.session_state.token:
     st.success("Already logged in! Redirecting to Dashboard...")
     time.sleep(1)
-    st.switch_page("pages/1_Welcome.py")  # Dashboard page
+    st.switch_page("Dashboard")  # Page title of dashboard
 
 # ==========================
 # INITIALIZE SPLASH FLAG
@@ -163,12 +162,11 @@ if not st.session_state.seen_splash:
 
     st.markdown('<div style="text-align:center; margin-top:5rem;">', unsafe_allow_html=True)
 
-    # ✅ Load local logo.png
+    # Load logo.png
     logo_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
     if os.path.exists(logo_path):
         st.image(logo_path, width=280)
     else:
-        # fallback online image
         st.image("https://i.imgur.com/9B1xU6X.png", width=280)
 
     # Gradient title
@@ -180,11 +178,10 @@ if not st.session_state.seen_splash:
     with col2:
         if st.button("Get Started", key="splash_btn"):
             st.session_state.seen_splash = True
-            st.switch_page("pages/2_Login.py")  # Login page
+            st.switch_page("Login")  # ✅ Use page title, not file name
 
     st.markdown('</div>', unsafe_allow_html=True)
     st.stop()
 else:
     # Splash already seen → go to login
-    st.switch_page("pages/2_Login.py")
-
+    st.switch_page("Login")  # ✅ Page title

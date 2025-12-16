@@ -64,7 +64,7 @@ st.title("🐄 Pashudhan AI Dashboard")
 st.success("You are logged in")
 
 if st.button("🔍 Predict Breed"):
-    st.switch_page("pages/6_Breed_Prediction.py")
+    st.switch_page("pages/4_Breed_Prediction.py")
 
 if st.button("🚪 Logout"):
     st.session_state.clear()

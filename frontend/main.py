@@ -351,78 +351,78 @@
 
 # # st.switch_page("pages/1_Welcome.py")
 
-# import streamlit as st
-
-
-# st.set_page_config(
-# page_title="Pashudhan AI",
-# page_icon="🐄",
-# layout="centered"
-# )
-
-
-# CUSTOM_CSS = """
-# <style>
-# body {
-# background: linear-gradient(135deg, #f5f7fa, #e4efe9);
-# }
-
-
-# .main-title {
-# font-size: 42px;
-# font-weight: 800;
-# text-align: center;
-# color: #1f2937;
-# }
-
-
-# .subtitle {
-# text-align: center;
-# font-size: 18px;
-# color: #4b5563;
-# margin-bottom: 30px;
-# }
-
-
-# .card {
-# background: white;
-# padding: 30px;
-# border-radius: 18px;
-# box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-# margin-bottom: 25px;
-# }
-
-
-# .primary-btn button {
-# background: linear-gradient(90deg, #16a34a, #22c55e) !important;
-# color: white !important;
-# font-size: 18px !important;
-# padding: 0.6em 1.2em !important;
-# border-radius: 12px !important;
-# }
-# </style>
-# """
-
-
-# st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
-
 import streamlit as st
 
-# -------------------------------------------------
-# App configuration
-# -------------------------------------------------
+
 st.set_page_config(
-    page_title="Pashudhan AI",
-    page_icon="🐄",
-    layout="centered"
+page_title="Pashudhan AI",
+page_icon="🐄",
+layout="centered"
 )
 
-# -------------------------------------------------
-# Entry point / Router
-# -------------------------------------------------
-# Streamlit app hamesha main.py se start hoti hai
-# Isliye yahan se Welcome page par redirect kar rahe hain
-# Taaki clean and professional flow mile
-# -------------------------------------------------
 
-st.switch_page("pages/1_Welcome.py")
+CUSTOM_CSS = """
+<style>
+body {
+background: linear-gradient(135deg, #f5f7fa, #e4efe9);
+}
+
+
+.main-title {
+font-size: 42px;
+font-weight: 800;
+text-align: center;
+color: #1f2937;
+}
+
+
+.subtitle {
+text-align: center;
+font-size: 18px;
+color: #4b5563;
+margin-bottom: 30px;
+}
+
+
+.card {
+background: white;
+padding: 30px;
+border-radius: 18px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+margin-bottom: 25px;
+}
+
+
+.primary-btn button {
+background: linear-gradient(90deg, #16a34a, #22c55e) !important;
+color: white !important;
+font-size: 18px !important;
+padding: 0.6em 1.2em !important;
+border-radius: 12px !important;
+}
+</style>
+"""
+
+
+st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
+
+# import streamlit as st
+
+# # -------------------------------------------------
+# # App configuration
+# # -------------------------------------------------
+# st.set_page_config(
+#     page_title="Pashudhan AI",
+#     page_icon="🐄",
+#     layout="centered"
+# )
+
+# # -------------------------------------------------
+# # Entry point / Router
+# # -------------------------------------------------
+# # Streamlit app hamesha main.py se start hoti hai
+# # Isliye yahan se Welcome page par redirect kar rahe hain
+# # Taaki clean and professional flow mile
+# # -------------------------------------------------
+
+# st.switch_page("pages/1_Welcome.py")

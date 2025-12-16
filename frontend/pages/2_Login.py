@@ -30,7 +30,7 @@
 #     st.switch_page("pages/3_Signup.py")
 
 import streamlit as st
-from utils.api_helper import login
+from utils.api_helper import login_api
 
 st.set_page_config(page_title="Login", layout="centered")
 
@@ -52,7 +52,7 @@ email = st.text_input("Email")
 password = st.text_input("Password", type="password")
 
 if st.button("Login", use_container_width=True):
-    success, response = login({
+    success, response = login_api({
         "email": email,
         "password": password
     })

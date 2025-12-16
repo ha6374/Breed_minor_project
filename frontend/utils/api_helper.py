@@ -112,12 +112,12 @@ def handle_response(response):
         return False, message
 
 
-def signup_api(payload):
+def signup(payload):
     response = requests.post(f"{BASE_URL}/auth/signup", json=payload)
     return handle_response(response)
 
 
-def login_api(payload):
+def login(payload):
     response = requests.post(f"{BASE_URL}/auth/login", json=payload)
     return handle_response(response)
 

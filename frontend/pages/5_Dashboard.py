@@ -69,8 +69,16 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("Dashboard")
+st.title("📊 Dashboard")
 st.write("Welcome to the Breed Recognition System")
+
+st.success("✅ You are logged in")
+
+if st.button("🚪 Logout", use_container_width=True):
+    st.session_state.clear()
+    st.switch_page("pages/1_Welcome.py")
+
+st.markdown("---")
 
 c1, c2 = st.columns(2)
 

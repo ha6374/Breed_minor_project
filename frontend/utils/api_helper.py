@@ -49,17 +49,17 @@ def reset_password(token: str, new_password: str):
         print("Reset password error:", e)
         return None
 
-# # --- PROFILE ---
-# def get_user_profile(token: str):
-#     try:
-#         headers = {"Authorization": f"Bearer {token}"}
-#         res = requests.get(f"{BACKEND_URL}/auth/profile", headers=headers, timeout=10)
-#         if res.status_code == 200:
-#             return res.json()
-#         return None
-#     except Exception as e:
-#         print("Profile error:", e)
-#         return None
+# --- PROFILE ---
+def get_user_profile(token: str):
+    try:
+        headers = {"Authorization": f"Bearer {token}"}
+        res = requests.get(f"{BACKEND_URL}/auth/profile", headers=headers, timeout=10)
+        if res.status_code == 200:
+            return res.json()
+        return None
+    except Exception as e:
+        print("Profile error:", e)
+        return None
 
 def update_user_profile(token: str, data: dict):
     try:

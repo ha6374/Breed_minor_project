@@ -302,45 +302,119 @@
 #         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+# import os
+# import uuid
+# from fastapi import APIRouter, UploadFile, File
+# from fastapi.responses import JSONResponse
+# from app.ml.model import predict_custom, final_prediction, load_ml_model
+
+# router = APIRouter(prefix="/predict", tags=["Predict"])
+
+# UPLOAD_DIR = "uploads"
+# os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+# # Load model on startup
+# load_ml_model()
+
+# @router.post("/")
+# async def predict_breed(file: UploadFile = File(...)):
+#     try:
+#         # Save uploaded image
+#         filename = f"{uuid.uuid4()}.jpg"
+#         filepath = os.path.join(UPLOAD_DIR, filename)
+
+#         with open(filepath, "wb") as f:
+#             f.write(await file.read())
+
+#         # Predict
+#         top3 = predict_custom(filepath)
+#         best = final_prediction(top3)
+
+#         # Build response dictionary
+#         response = {
+#             "final_prediction": best,
+#             "top3_predictions": top3
+#         }
+
+#         # Optional: Add message if unknown
+#         if best["breed"].lower() == "unknown":
+#             response["message"] = "Image does not match any known breed."
+
+#         return response
+
+#     except Exception as e:
+#         return JSONResponse({"error": str(e)}, status_code=500)
 import os
 import uuid
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
 from app.ml.model import predict_custom, final_prediction, load_ml_model
 
 router = APIRouter(prefix="/predict", tags=["Predict"])
 
+# ---------------- CONFIG ---------------- #
 UPLOAD_DIR = "uploads"
+CONFIDENCE_THRESHOLD = 0.45   # ⭐ IMPORTANT
+ALLOWED_EXTENSIONS = ["jpg", "jpeg", "png"]
+
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-# Load model on startup
+# Load model once on startup
 load_ml_model()
+
+# --------------------------------------- #
 
 @router.post("/")
 async def predict_breed(file: UploadFile = File(...)):
     try:
-        # Save uploaded image
-        filename = f"{uuid.uuid4()}.jpg"
+        # --------- FILE VALIDATION --------- #
+        ext = file.filename.split(".")[-1].lower()
+        if ext not in ALLOWED_EXTENSIONS:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid file format. Upload jpg, jpeg or png image."
+            )
+
+        # --------- SAVE IMAGE --------- #
+        filename = f"{uuid.uuid4()}.{ext}"
         filepath = os.path.join(UPLOAD_DIR, filename)
 
         with open(filepath, "wb") as f:
             f.write(await file.read())
 
-        # Predict
+        # --------- MODEL PREDICTION --------- #
         top3 = predict_custom(filepath)
         best = final_prediction(top3)
 
-        # Build response dictionary
-        response = {
-            "final_prediction": best,
-            "top3_predictions": top3
-        }
+        breed = best.get("breed", "unknown")
+        confidence = float(best.get("confidence", 0.0))
 
-        # Optional: Add message if unknown
-        if best["breed"].lower() == "unknown":
-            response["message"] = "Image does not match any known breed."
+        # --------- UNKNOWN HANDLING --------- #
+        if confidence < CONFIDENCE_THRESHOLD:
+            response = {
+                "breed": "Unknown",
+                "confidence": confidence,
+                "top3_predictions": top3,
+                "message": "Breed could not be confidently identified."
+            }
+        else:
+            response = {
+                "breed": breed,
+                "confidence": confidence,
+                "top3_predictions": top3
+            }
+
+        # --------- CLEANUP IMAGE --------- #
+        if os.path.exists(filepath):
+            os.remove(filepath)
 
         return response
 
+    except HTTPException as e:
+        raise e
+
     except Exception as e:
-        return JSONResponse({"error": str(e)}, status_code=500)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Prediction failed", "details": str(e)}
+        )

@@ -50,26 +50,48 @@
 # if st.button("⬅ Back to Dashboard"):
 #     st.switch_page("pages/5_Dashboard.py")
 
+
 import streamlit as st
 
-st.set_page_config(page_title="Dashboard", page_icon="🐄")
+st.set_page_config(page_title="Dashboard", layout="wide")
 
-# 🔒 Protect page
-if "token" not in st.session_state or st.session_state.token is None:
-    st.warning("Please login first")
+if "token" not in st.session_state:
     st.switch_page("pages/2_Login.py")
 
-st.title("🐄 Pashudhan AI Dashboard")
+st.markdown("""
+<style>
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+</style>
+""", unsafe_allow_html=True)
 
-st.success("You are logged in")
+st.title("Dashboard")
+st.write("Welcome to the Breed Recognition System")
 
-if st.button("🔍 Predict Breed"):
-    st.switch_page("pages/6_Breed_Prediction.py")
+c1, c2 = st.columns(2)
 
-if st.button("🚪 Logout"):
-    st.session_state.clear()
-    st.switch_page("pages/2_Login.py")
+with c1:
+    st.markdown("<div class='card'>", unsafe_allow_html=True)
+    st.subheader("Breed Prediction")
+    st.write("Upload cattle or buffalo image to predict its breed.")
+    st.button("Start Prediction", use_container_width=True,
+              on_click=lambda: st.switch_page("pages/6_Breed_Prediction.py"))
+    st.markdown("</div>", unsafe_allow_html=True)
 
+with c2:
+    st.markdown("<div class='card'>", unsafe_allow_html=True)
+    st.subheader("Profile")
+    st.write("View and manage your account information.")
+    st.button("Go to Profile", use_container_width=True,
+              on_click=lambda: st.switch_page("pages/7_Profile.py"))
+    st.markdown("</div>", unsafe_allow_html=True)
 
-
-
+st.write("")
+st.button("Logout", on_click=lambda: (
+    st.session_state.clear(),
+    st.switch_page("pages/1_Welcome.py")
+))

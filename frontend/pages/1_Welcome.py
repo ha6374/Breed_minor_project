@@ -268,32 +268,65 @@
 # else:
 #     # Already seen → go to Login
 #     st.switch_page("pages/2_Login.py")
-
 import streamlit as st
 
-
-st.markdown("<div class='main-title'>🐄 Pashudhan AI</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>AI Powered Cattle Breed Prediction System</div>", unsafe_allow_html=True)
-
+st.set_page_config(page_title="Welcome", layout="wide")
 
 st.markdown("""
-<div class='card'>
-<h3>✨ What does this app do?</h3>
-<p>
-Upload an image of a cow or buffalo and our deep learning model will predict the breed with confidence.
-</p>
-</div>
+<style>
+.hero {
+    padding: 60px 40px;
+}
+.hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+}
+.hero p {
+    color: #6b7280;
+    font-size: 18px;
+}
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+</style>
 """, unsafe_allow_html=True)
 
+st.markdown("<div class='hero'>", unsafe_allow_html=True)
+st.markdown("<h1>Breed Recognition System</h1>", unsafe_allow_html=True)
+st.markdown(
+    "<p>AI based cattle and buffalo breed identification system using deep learning</p>",
+    unsafe_allow_html=True
+)
+st.markdown("</div>", unsafe_allow_html=True)
 
+c1, c2, c3 = st.columns(3)
+
+with c1:
+    st.markdown("<div class='card'>", unsafe_allow_html=True)
+    st.subheader("Accurate Prediction")
+    st.write("Deep learning model trained on Indian cattle and buffalo breeds.")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+with c2:
+    st.markdown("<div class='card'>", unsafe_allow_html=True)
+    st.subheader("User Friendly")
+    st.write("Clean interface with proper flow for real world usage.")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+with c3:
+    st.markdown("<div class='card'>", unsafe_allow_html=True)
+    st.subheader("Practical Application")
+    st.write("Helpful for farmers, researchers and veterinary support.")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+st.write("")
 col1, col2 = st.columns(2)
 
-
 with col1:
-  if st.button("🔐 Login", use_container_width=True):
-    st.switch_page("pages/2_Login.py")
-
+    st.button("Login", use_container_width=True, on_click=lambda: st.switch_page("pages/2_Login.py"))
 
 with col2:
-  if st.button("📝 Signup", use_container_width=True):
-    st.switch_page("pages/3_Signup.py")
+    st.button("Create Account", use_container_width=True, on_click=lambda: st.switch_page("pages/3_Signup.py"))

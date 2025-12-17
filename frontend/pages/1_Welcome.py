@@ -357,11 +357,9 @@ st.set_page_config(
 )
 
 # -------------------------
-# CHECK IF USER ALREADY LOGGED IN
+# CHECK LOGIN
 # -------------------------
 if "token" in st.session_state and st.session_state.token:
-    st.success("Already logged in! Redirecting to Dashboard...")
-    time.sleep(1)
     st.switch_page("pages/5_Dashboard.py")
 
 # -------------------------
@@ -377,25 +375,39 @@ if not st.session_state.seen_splash:
 
     st.markdown("""
     <style>
+        /* Remove default padding */
+        .block-container {
+            padding-top: 0rem;
+            padding-bottom: 0rem;
+        }
+
         body {
-            background: linear-gradient(120deg, #f6f9fc, #eef3f7);
+            background: linear-gradient(135deg, #eafaf1, #f5fff9);
         }
 
-        .splash-container {
+        .center-wrapper {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 85vh;
-            animation: fadeIn 1.2s ease-in-out;
+            align-items: center;
+            height: 100vh;
         }
 
-        .title-text {
+        .glass-card {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(14px);
+            border-radius: 22px;
+            padding: 3.5rem 4.5rem;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            animation: fadeUp 1.2s ease;
+        }
+
+        .title {
+            font-size: 3.4rem;
+            font-weight: 900;
             background: linear-gradient(90deg, #00b09b, #96c93d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 3.5rem;
-            font-weight: 900;
             margin-top: 1rem;
         }
 
@@ -405,52 +417,62 @@ if not st.session_state.seen_splash:
             margin-bottom: 2.5rem;
         }
 
-        .splash-button button {
+        .stButton > button {
             background: linear-gradient(90deg, #00b09b, #96c93d);
             color: white;
             border-radius: 14px;
-            padding: 0.8rem 2.5rem;
-            font-size: 1.2rem;
+            padding: 0.75rem 2.8rem;
+            font-size: 1.15rem;
             font-weight: 700;
             border: none;
             transition: all 0.3s ease;
         }
 
-        .splash-button button:hover {
-            transform: scale(1.07);
-            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+        .stButton > button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
     """, unsafe_allow_html=True)
 
-    st.markdown('<div class="splash-container">', unsafe_allow_html=True)
+    st.markdown('<div class="center-wrapper">', unsafe_allow_html=True)
+    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
 
-    # Logo
+    # LOGO
     logo_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
     if os.path.exists(logo_path):
-        st.image(logo_path, width=260)
+        st.image(logo_path, width=240)
     else:
-        st.image("https://i.imgur.com/9B1xU6X.png", width=260)
+        st.image("https://i.imgur.com/9B1xU6X.png", width=240)
 
-    # Title & Subtitle
-    st.markdown('<div class="title-text">🐄 Pashudhan AI</div>', unsafe_allow_html=True)
+    # TEXT
+    st.markdown('<div class="title">🐄 Pashudhan AI</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">Smart Cattle Breed Prediction System</div>', unsafe_allow_html=True)
 
-    # Button
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        if st.button("Get Started"):
-            st.session_state.seen_splash = True
-            st.switch_page("pages/2_Login.py")
+    # BUTTON
+    if st.button("Get Started"):
+        st.session_state.seen_splash = True
+        st.switch_page("pages/2_Login.py")
 
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div></div>", unsafe_allow_html=True)
+
+    # AUTO REDIRECT AFTER 3 SECONDS
+    time.sleep(3)
+    st.session_state.seen_splash = True
+    st.switch_page("pages/2_Login.py")
+
     st.stop()
 
 else:
     st.switch_page("pages/2_Login.py")
-

@@ -186,88 +186,99 @@
 # #     # Splash already seen → go to login
 # #     st.switch_page("pages/2_Login.py")  # ✅ Page title
 
-import streamlit as st
-import os
-import time
 
-st.set_page_config(
-    page_title="Welcome | Pashudhan AI",
-    page_icon="🐄",
-    layout="wide"
-)
 
-# -------------------------
-# CHECK IF USER ALREADY LOGGED IN
-# -------------------------
-if "token" in st.session_state and st.session_state.token:
-    st.success("Already logged in! Redirecting to Dashboard...")
-    time.sleep(1)
-    st.switch_page("pages/5_Dashboard.py")  # Page title
 
-# -------------------------
-# SPLASH FLAG
-# -------------------------
-if "seen_splash" not in st.session_state:
-    st.session_state.seen_splash = False
 
-# -------------------------
-# SPLASH SCREEN
-# -------------------------
-if not st.session_state.seen_splash:
-    st.markdown("""
-        <style>
-            .title-text {
-                background: linear-gradient(90deg, #00b09b, #96c93d);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                font-weight: 900;
-                font-size: 3rem;
-                text-align: center;
-                animation: fadeInDown 1.5s ease-out;
-            }
-            .splash-button {
-                background: linear-gradient(90deg, #00b09b, #96c93d);
-                color: white;
-                border: none;
-                padding: 1rem 2rem;
-                border-radius: 12px;
-                font-size: 1.2rem;
-                font-weight: bold;
-                cursor: pointer;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-            .splash-button:hover {
-                transform: scale(1.05);
-                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            }
-        </style>
-    """, unsafe_allow_html=True)
 
-    st.markdown('<div style="text-align:center; margin-top:5rem;">', unsafe_allow_html=True)
+# import streamlit as st
+# import os
+# import time
 
-    # ✅ Load local logo
-    logo_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
-    if os.path.exists(logo_path):
-        st.image(logo_path, width=280)
-    else:
-        st.image("https://i.imgur.com/9B1xU6X.png", width=280)
+# st.set_page_config(
+#     page_title="Welcome | Pashudhan AI",
+#     page_icon="🐄",
+#     layout="wide"
+# )
 
-    # Title
-    st.markdown('<h1 class="title-text">🐄 Pashudhan AI</h1>', unsafe_allow_html=True)
-    st.markdown('<p style="font-size:22px; color:#4a4a4a;">Smart Cattle Breed Prediction System</p>', unsafe_allow_html=True)
+# # -------------------------
+# # CHECK IF USER ALREADY LOGGED IN
+# # -------------------------
+# if "token" in st.session_state and st.session_state.token:
+#     st.success("Already logged in! Redirecting to Dashboard...")
+#     time.sleep(1)
+#     st.switch_page("pages/5_Dashboard.py")  # Page title
 
-    # Get Started Button
-    col1, col2, col3 = st.columns([1,2,1])
-    with col2:
-        if st.button("Get Started", key="splash_btn"):
-            st.session_state.seen_splash = True
-            st.switch_page("pages/2_Login.py")  # ✅ Page title
+# # -------------------------
+# # SPLASH FLAG
+# # -------------------------
+# if "seen_splash" not in st.session_state:
+#     st.session_state.seen_splash = False
 
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.stop()
-else:
-    # Already seen → go to Login
-    st.switch_page("pages/2_Login.py")
+# # -------------------------
+# # SPLASH SCREEN
+# # -------------------------
+# if not st.session_state.seen_splash:
+#     st.markdown("""
+#         <style>
+#             .title-text {
+#                 background: linear-gradient(90deg, #00b09b, #96c93d);
+#                 -webkit-background-clip: text;
+#                 -webkit-text-fill-color: transparent;
+#                 font-weight: 900;
+#                 font-size: 3rem;
+#                 text-align: center;
+#                 animation: fadeInDown 1.5s ease-out;
+#             }
+#             .splash-button {
+#                 background: linear-gradient(90deg, #00b09b, #96c93d);
+#                 color: white;
+#                 border: none;
+#                 padding: 1rem 2rem;
+#                 border-radius: 12px;
+#                 font-size: 1.2rem;
+#                 font-weight: bold;
+#                 cursor: pointer;
+#                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+#             }
+#             .splash-button:hover {
+#                 transform: scale(1.05);
+#                 box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+#             }
+#         </style>
+#     """, unsafe_allow_html=True)
+
+#     st.markdown('<div style="text-align:center; margin-top:5rem;">', unsafe_allow_html=True)
+
+#     # ✅ Load local logo
+#     logo_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
+#     if os.path.exists(logo_path):
+#         st.image(logo_path, width=280)
+#     else:
+#         st.image("https://i.imgur.com/9B1xU6X.png", width=280)
+
+#     # Title
+#     st.markdown('<h1 class="title-text">🐄 Pashudhan AI</h1>', unsafe_allow_html=True)
+#     st.markdown('<p style="font-size:22px; color:#4a4a4a;">Smart Cattle Breed Prediction System</p>', unsafe_allow_html=True)
+
+#     # Get Started Button
+#     col1, col2, col3 = st.columns([1,2,1])
+#     with col2:
+#         if st.button("Get Started", key="splash_btn"):
+#             st.session_state.seen_splash = True
+#             st.switch_page("pages/2_Login.py")  # ✅ Page title
+
+#     st.markdown('</div>', unsafe_allow_html=True)
+#     st.stop()
+# else:
+#     # Already seen → go to Login
+#     st.switch_page("pages/2_Login.py")
+
+
+
+
+
+
 # import streamlit as st
 
 # st.set_page_config(page_title="Welcome", layout="wide")
@@ -330,3 +341,116 @@ else:
 
 # with col2:
 #     st.button("Create Account", use_container_width=True, on_click=lambda: st.switch_page("pages/3_Signup.py"))
+
+
+
+
+# new code begain
+import streamlit as st
+import os
+import time
+
+st.set_page_config(
+    page_title="Welcome | Pashudhan AI",
+    page_icon="🐄",
+    layout="wide"
+)
+
+# -------------------------
+# CHECK IF USER ALREADY LOGGED IN
+# -------------------------
+if "token" in st.session_state and st.session_state.token:
+    st.success("Already logged in! Redirecting to Dashboard...")
+    time.sleep(1)
+    st.switch_page("pages/5_Dashboard.py")
+
+# -------------------------
+# SPLASH FLAG
+# -------------------------
+if "seen_splash" not in st.session_state:
+    st.session_state.seen_splash = False
+
+# -------------------------
+# SPLASH SCREEN
+# -------------------------
+if not st.session_state.seen_splash:
+
+    st.markdown("""
+    <style>
+        body {
+            background: linear-gradient(120deg, #f6f9fc, #eef3f7);
+        }
+
+        .splash-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 85vh;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        .title-text {
+            background: linear-gradient(90deg, #00b09b, #96c93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-top: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 2.5rem;
+        }
+
+        .splash-button button {
+            background: linear-gradient(90deg, #00b09b, #96c93d);
+            color: white;
+            border-radius: 14px;
+            padding: 0.8rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .splash-button button:hover {
+            transform: scale(1.07);
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<div class="splash-container">', unsafe_allow_html=True)
+
+    # Logo
+    logo_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
+    if os.path.exists(logo_path):
+        st.image(logo_path, width=260)
+    else:
+        st.image("https://i.imgur.com/9B1xU6X.png", width=260)
+
+    # Title & Subtitle
+    st.markdown('<div class="title-text">🐄 Pashudhan AI</div>', unsafe_allow_html=True)
+    st.markdown('<div class="subtitle">Smart Cattle Breed Prediction System</div>', unsafe_allow_html=True)
+
+    # Button
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        if st.button("Get Started"):
+            st.session_state.seen_splash = True
+            st.switch_page("pages/2_Login.py")
+
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.stop()
+
+else:
+    st.switch_page("pages/2_Login.py")
+

@@ -378,7 +378,7 @@ if "seen_splash" not in st.session_state:
 if not st.session_state.seen_splash:
 
     # -------------------------
-    # FORCE FULLSCREEN & REMOVE SCROLL
+    # FULLSCREEN + NO SCROLL + NO CONTAINER
     # -------------------------
     st.markdown("""
     <style>
@@ -388,7 +388,6 @@ if not st.session_state.seen_splash:
         height: 0;
     }
 
-    /* Remove padding & margins */
     html, body {
         margin: 0;
         padding: 0;
@@ -396,7 +395,6 @@ if not st.session_state.seen_splash:
         overflow: hidden;
     }
 
-    /* Main app */
     [data-testid="stApp"] {
         height: 100vh;
         overflow: hidden;
@@ -410,31 +408,19 @@ if not st.session_state.seen_splash:
         overflow: hidden;
     }
 
-    /* Center content */
+    /* Perfect center */
     .center-wrapper {
         position: fixed;
         inset: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    /* Glass card */
-    .glass-card {
-        background: rgba(255, 255, 255, 0.28);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 28px;
-        padding: 4rem 5rem;
         text-align: center;
-        box-shadow:
-            0 35px 70px rgba(0, 0, 0, 0.2),
-            inset 0 0 0 1px rgba(255,255,255,0.35);
-        animation: fadeUp 1.4s ease-out;
     }
 
+    /* Title */
     .title {
-        font-size: 3.7rem;
+        font-size: 3.8rem;
         font-weight: 900;
         background: linear-gradient(90deg, #00b09b, #96c93d);
         -webkit-background-clip: text;
@@ -443,7 +429,7 @@ if not st.session_state.seen_splash:
     }
 
     .subtitle {
-        font-size: 1.35rem;
+        font-size: 1.4rem;
         color: #555;
         margin-bottom: 3rem;
         font-weight: 500;
@@ -453,7 +439,7 @@ if not st.session_state.seen_splash:
         background: linear-gradient(90deg, #00b09b, #96c93d);
         color: white;
         border-radius: 18px;
-        padding: 0.9rem 3.4rem;
+        padding: 0.9rem 3.5rem;
         font-size: 1.25rem;
         font-weight: 700;
         border: none;
@@ -464,31 +450,20 @@ if not st.session_state.seen_splash:
         transform: scale(1.1);
         box-shadow: 0 20px 45px rgba(0,0,0,0.28);
     }
-
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(35px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
     </style>
     """, unsafe_allow_html=True)
 
     # -------------------------
-    # UI CONTENT
+    # CENTER CONTENT (NO BOX)
     # -------------------------
-    st.markdown('<div class="center-wrapper"><div class="glass-card">', unsafe_allow_html=True)
+    st.markdown('<div class="center-wrapper"><div>', unsafe_allow_html=True)
 
     # LOGO
     logo_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
     if os.path.exists(logo_path):
-        st.image(logo_path, width=240)
+        st.image(logo_path, width=260)
     else:
-        st.image("https://i.imgur.com/9B1xU6X.png", width=240)
+        st.image("https://i.imgur.com/9B1xU6X.png", width=260)
 
     # TEXT
     st.markdown('<div class="title">🐄 Pashudhan AI</div>', unsafe_allow_html=True)
@@ -507,7 +482,7 @@ if not st.session_state.seen_splash:
     # -------------------------
     # AUTO REDIRECT (10 SECONDS)
     # -------------------------
-    time.sleep(100)
+    time.sleep(10)
     st.session_state.seen_splash = True
     st.switch_page("pages/2_Login.py")
 
@@ -518,3 +493,4 @@ if not st.session_state.seen_splash:
 # -------------------------
 else:
     st.switch_page("pages/2_Login.py")
+

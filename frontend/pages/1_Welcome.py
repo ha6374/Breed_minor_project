@@ -507,7 +507,7 @@ if not st.session_state.seen_splash:
     # -------------------------
     # AUTO REDIRECT (10 SECONDS)
     # -------------------------
-    time.sleep(10)
+    time.sleep(100)
     st.session_state.seen_splash = True
     st.switch_page("pages/2_Login.py")
 

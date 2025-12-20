@@ -378,47 +378,63 @@ if "seen_splash" not in st.session_state:
 if not st.session_state.seen_splash:
 
     # -------------------------
-    # GLOBAL STYLES (NO TOP SPACE)
+    # FORCE FULLSCREEN & REMOVE SCROLL
     # -------------------------
     st.markdown("""
     <style>
-    #MainMenu {visibility: hidden;}
-    header {visibility: hidden;}
-    footer {visibility: hidden;}
-
-    .block-container {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        margin-top: 0 !important;
+    /* Hide Streamlit UI */
+    #MainMenu, header, footer {
+        visibility: hidden;
+        height: 0;
     }
 
-    html, body, [data-testid="stApp"] {
+    /* Remove padding & margins */
+    html, body {
+        margin: 0;
+        padding: 0;
         height: 100%;
+        overflow: hidden;
+    }
+
+    /* Main app */
+    [data-testid="stApp"] {
+        height: 100vh;
+        overflow: hidden;
         background: linear-gradient(135deg, #e9fff5, #f7fffb);
     }
 
+    .block-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Center content */
     .center-wrapper {
+        position: fixed;
+        inset: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
     }
 
+    /* Glass card */
     .glass-card {
-        background: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 28px;
         padding: 4rem 5rem;
         text-align: center;
         box-shadow:
-            0 30px 60px rgba(0, 0, 0, 0.18),
+            0 35px 70px rgba(0, 0, 0, 0.2),
             inset 0 0 0 1px rgba(255,255,255,0.35);
-        animation: fadeUp 1.3s ease-out;
+        animation: fadeUp 1.4s ease-out;
     }
 
     .title {
-        font-size: 3.6rem;
+        font-size: 3.7rem;
         font-weight: 900;
         background: linear-gradient(90deg, #00b09b, #96c93d);
         -webkit-background-clip: text;
@@ -429,16 +445,16 @@ if not st.session_state.seen_splash:
     .subtitle {
         font-size: 1.35rem;
         color: #555;
-        margin-bottom: 2.8rem;
+        margin-bottom: 3rem;
         font-weight: 500;
     }
 
     .stButton > button {
         background: linear-gradient(90deg, #00b09b, #96c93d);
         color: white;
-        border-radius: 16px;
-        padding: 0.85rem 3.2rem;
-        font-size: 1.2rem;
+        border-radius: 18px;
+        padding: 0.9rem 3.4rem;
+        font-size: 1.25rem;
         font-weight: 700;
         border: none;
         transition: all 0.35s ease;
@@ -446,13 +462,13 @@ if not st.session_state.seen_splash:
 
     .stButton > button:hover {
         transform: scale(1.1);
-        box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+        box-shadow: 0 20px 45px rgba(0,0,0,0.28);
     }
 
     @keyframes fadeUp {
         from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(35px);
         }
         to {
             opacity: 1;
@@ -489,9 +505,9 @@ if not st.session_state.seen_splash:
     st.markdown('</div></div>', unsafe_allow_html=True)
 
     # -------------------------
-    # AUTO REDIRECT
+    # AUTO REDIRECT (10 SECONDS)
     # -------------------------
-    time.sleep(3)
+    time.sleep(10)
     st.session_state.seen_splash = True
     st.switch_page("pages/2_Login.py")
 

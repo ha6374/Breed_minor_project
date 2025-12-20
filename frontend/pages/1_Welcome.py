@@ -350,14 +350,18 @@ import streamlit as st
 import os
 import time
 
+# -------------------------
+# PAGE CONFIG
+# -------------------------
 st.set_page_config(
     page_title="Welcome | Pashudhan AI",
     page_icon="🐄",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
 # -------------------------
-# CHECK LOGIN
+# AUTO REDIRECT IF LOGGED IN
 # -------------------------
 if "token" in st.session_state and st.session_state.token:
     st.switch_page("pages/5_Dashboard.py")
@@ -373,81 +377,95 @@ if "seen_splash" not in st.session_state:
 # -------------------------
 if not st.session_state.seen_splash:
 
+    # -------------------------
+    # GLOBAL STYLES (NO TOP SPACE)
+    # -------------------------
     st.markdown("""
     <style>
-        /* Remove default padding */
-        .block-container {
-            padding-top: 0rem;
-            padding-bottom: 0rem;
-        }
+    #MainMenu {visibility: hidden;}
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
 
-        body {
-            background: linear-gradient(135deg, #eafaf1, #f5fff9);
-        }
+    .block-container {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+    }
 
-        .center-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    html, body, [data-testid="stApp"] {
+        height: 100%;
+        background: linear-gradient(135deg, #e9fff5, #f7fffb);
+    }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(14px);
-            border-radius: 22px;
-            padding: 3.5rem 4.5rem;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            animation: fadeUp 1.2s ease;
-        }
+    .center-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-        .title {
-            font-size: 3.4rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, #00b09b, #96c93d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-top: 1rem;
-        }
+    .glass-card {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-radius: 26px;
+        padding: 4rem 5rem;
+        text-align: center;
+        box-shadow:
+            0 30px 60px rgba(0, 0, 0, 0.18),
+            inset 0 0 0 1px rgba(255,255,255,0.35);
+        animation: fadeUp 1.3s ease-out;
+    }
 
-        .subtitle {
-            font-size: 1.3rem;
-            color: #555;
-            margin-bottom: 2.5rem;
-        }
+    .title {
+        font-size: 3.6rem;
+        font-weight: 900;
+        background: linear-gradient(90deg, #00b09b, #96c93d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-top: 1.2rem;
+    }
 
-        .stButton > button {
-            background: linear-gradient(90deg, #00b09b, #96c93d);
-            color: white;
-            border-radius: 14px;
-            padding: 0.75rem 2.8rem;
-            font-size: 1.15rem;
-            font-weight: 700;
-            border: none;
-            transition: all 0.3s ease;
-        }
+    .subtitle {
+        font-size: 1.35rem;
+        color: #555;
+        margin-bottom: 2.8rem;
+        font-weight: 500;
+    }
 
-        .stButton > button:hover {
-            transform: scale(1.08);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-        }
+    .stButton > button {
+        background: linear-gradient(90deg, #00b09b, #96c93d);
+        color: white;
+        border-radius: 16px;
+        padding: 0.85rem 3.2rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        border: none;
+        transition: all 0.35s ease;
+    }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+    .stButton > button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
         }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
     </style>
     """, unsafe_allow_html=True)
 
-    st.markdown('<div class="center-wrapper">', unsafe_allow_html=True)
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+    # -------------------------
+    # UI CONTENT
+    # -------------------------
+    st.markdown('<div class="center-wrapper"><div class="glass-card">', unsafe_allow_html=True)
 
     # LOGO
     logo_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
@@ -458,21 +476,29 @@ if not st.session_state.seen_splash:
 
     # TEXT
     st.markdown('<div class="title">🐄 Pashudhan AI</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle">Smart Cattle Breed Prediction System</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="subtitle">Smart Cattle Breed Prediction System</div>',
+        unsafe_allow_html=True
+    )
 
     # BUTTON
     if st.button("Get Started"):
         st.session_state.seen_splash = True
         st.switch_page("pages/2_Login.py")
 
-    st.markdown("</div></div>", unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
-    # AUTO REDIRECT AFTER 3 SECONDS
+    # -------------------------
+    # AUTO REDIRECT
+    # -------------------------
     time.sleep(3)
     st.session_state.seen_splash = True
     st.switch_page("pages/2_Login.py")
 
     st.stop()
 
+# -------------------------
+# FALLBACK
+# -------------------------
 else:
     st.switch_page("pages/2_Login.py")

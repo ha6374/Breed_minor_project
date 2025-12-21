@@ -46,10 +46,51 @@
 
 # st.markdown("</div>", unsafe_allow_html=True)
 
+# import streamlit as st
+# from utils.api_helper import forgot_password
+
+# st.set_page_config(page_title="Forgot Password", page_icon="❓")
+
+# st.markdown("""
+# <style>
+# .forgot-card {
+#     background: white;
+#     padding: 35px;
+#     border-radius: 16px;
+#     box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+#     max-width: 450px;
+#     margin: auto;
+# }
+# </style>
+# """, unsafe_allow_html=True)
+
+# st.markdown("<div class='forgot-card'>", unsafe_allow_html=True)
+# st.subheader("Forgot Password")
+# st.write("Enter your registered email to receive a password reset link.")
+
+# email = st.text_input("Email")
+
+# if st.button("Send Reset Link", use_container_width=True):
+#     if email:
+#         success, message = forgot_password(email)
+#         if success:
+#             st.success(f"✅ {message}")
+#         else:
+#             st.error(f"❌ {message}")
+#     else:
+#         st.warning("⚠️ Please enter your email")
+
+# st.write("")
+# st.button("Back to Login", use_container_width=True,
+#           on_click=lambda: st.switch_page("pages/2_Login.py"))
+
+# st.markdown("</div>", unsafe_allow_html=True)
+
+
 import streamlit as st
 from utils.api_helper import forgot_password
 
-st.set_page_config(page_title="Forgot Password", page_icon="❓")
+st.set_page_config(page_title="Forgot Password", page_icon="❓", layout="centered")
 
 st.markdown("""
 <style>
@@ -65,20 +106,21 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("<div class='forgot-card'>", unsafe_allow_html=True)
-st.subheader("Forgot Password")
+
+st.subheader("🔐 Forgot Password")
 st.write("Enter your registered email to receive a password reset link.")
 
 email = st.text_input("Email")
 
 if st.button("Send Reset Link", use_container_width=True):
-    if email:
+    if not email:
+        st.warning("⚠️ Please enter your email")
+    else:
         success, message = forgot_password(email)
         if success:
             st.success(f"✅ {message}")
         else:
             st.error(f"❌ {message}")
-    else:
-        st.warning("⚠️ Please enter your email")
 
 st.write("")
 st.button("Back to Login", use_container_width=True,

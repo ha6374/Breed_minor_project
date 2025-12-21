@@ -104,6 +104,129 @@
 #     st.switch_page("pages/1_Welcome.py")
 # ))
 
+# import streamlit as st
+
+# st.set_page_config(
+#     page_title="Dashboard | Pashudhan AI",
+#     page_icon="🐄",
+#     layout="wide"
+# )
+
+# # 🔒 Protect page
+# if "token" not in st.session_state or not st.session_state.token:
+#     st.warning("Please login first")
+#     st.switch_page("pages/2_Login.py")
+
+# # ------------------ STYLES ------------------
+# st.markdown("""
+# <style>
+# .dashboard-container {
+#     background: linear-gradient(135deg, #00b09b, #96c93d);
+#     padding: 3rem;
+#     border-radius: 25px;
+#     color: white;
+#     text-align: center;
+#     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+#     animation: fadeIn 1.2s ease-in-out;
+# }
+
+# @keyframes fadeIn {
+#     from {opacity: 0; transform: translateY(30px);}
+#     to {opacity: 1; transform: translateY(0);}
+# }
+
+# .card {
+#     background: white;
+#     border-radius: 20px;
+#     padding: 2rem;
+#     text-align: center;
+#     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+#     transition: transform 0.3s ease;
+# }
+
+# .card:hover {
+#     transform: scale(1.05);
+# }
+
+# .predict-btn button {
+#     background: linear-gradient(90deg, #ff9800, #ff5722);
+#     color: white;
+#     font-size: 20px;
+#     padding: 0.8rem 2.5rem;
+#     border-radius: 15px;
+#     border: none;
+#     font-weight: 700;
+# }
+
+# .predict-btn button:hover {
+#     background: linear-gradient(90deg, #fb8c00, #f4511e);
+# }
+# </style>
+# """, unsafe_allow_html=True)
+
+# # ------------------ HEADER ------------------
+# st.markdown("""
+# <div class="dashboard-container">
+#     <h1>🐄 Welcome to Pashudhan AI</h1>
+#     <p style="font-size:20px;">
+#         AI-powered cattle breed identification system
+#     </p>
+# </div>
+# """, unsafe_allow_html=True)
+
+# st.write("")
+# st.write("")
+
+# # ------------------ MAIN ACTION ------------------
+# col1, col2, col3 = st.columns([1,2,1])
+
+# with col2:
+#     st.markdown("""
+#     <div class="card">
+#         <h2>🔍 Predict Cattle Breed</h2>
+#         <p>
+#             Upload an image of cattle and let our AI model identify the breed
+#             instantly with high accuracy.
+#         </p>
+#     </div>
+#     """, unsafe_allow_html=True)
+
+#     st.write("")
+
+#     if st.button("🚀 Start Prediction", key="predict_btn"):
+#         st.switch_page("pages/6_Breed_Prediction.py")
+
+# # ------------------ INFO CARDS ------------------
+# st.write("")
+# st.write("")
+
+# c1, c2, c3 = st.columns(3)
+
+# with c1:
+#     st.markdown("""
+#     <div class="card">
+#         <h3>⚡ Fast</h3>
+#         <p>Instant predictions using optimized deep learning models.</p>
+#     </div>
+#     """, unsafe_allow_html=True)
+
+# with c2:
+#     st.markdown("""
+#     <div class="card">
+#         <h3>🎯 Accurate</h3>
+#         <p>Trained on real cattle images for reliable results.</p>
+#     </div>
+#     """, unsafe_allow_html=True)
+
+# with c3:
+#     st.markdown("""
+#     <div class="card">
+#         <h3>🌱 Farmer Friendly</h3>
+#         <p>Designed for easy use by farmers and researchers.</p>
+#     </div>
+#     """, unsafe_allow_html=True)
+
+
 import streamlit as st
 
 st.set_page_config(
@@ -117,58 +240,69 @@ if "token" not in st.session_state or not st.session_state.token:
     st.warning("Please login first")
     st.switch_page("pages/2_Login.py")
 
-# ------------------ STYLES ------------------
+# ------------------ GLOBAL THEME FIX ------------------
 st.markdown("""
 <style>
-.dashboard-container {
+
+/* Whole page background */
+.stApp {
+    background-color: #f4f6f8;
+}
+
+/* Remove default Streamlit padding */
+.block-container {
+    padding-top: 2rem;
+}
+
+/* HEADER */
+.dashboard-header {
     background: linear-gradient(135deg, #00b09b, #96c93d);
     padding: 3rem;
-    border-radius: 25px;
+    border-radius: 22px;
     color: white;
     text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    animation: fadeIn 1.2s ease-in-out;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(30px);}
-    to {opacity: 1; transform: translateY(0);}
-}
-
+/* CARD */
 .card {
-    background: white;
-    border-radius: 20px;
+    background: #ffffff;
+    color: #222222;
+    border-radius: 18px;
     padding: 2rem;
-    text-align: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     transition: transform 0.3s ease;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
 }
 
-.predict-btn button {
+/* BUTTON */
+div.stButton > button {
     background: linear-gradient(90deg, #ff9800, #ff5722);
     color: white;
     font-size: 20px;
     padding: 0.8rem 2.5rem;
-    border-radius: 15px;
+    border-radius: 14px;
     border: none;
     font-weight: 700;
+    width: 100%;
 }
 
-.predict-btn button:hover {
+div.stButton > button:hover {
     background: linear-gradient(90deg, #fb8c00, #f4511e);
+    color: white;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
 # ------------------ HEADER ------------------
 st.markdown("""
-<div class="dashboard-container">
+<div class="dashboard-header">
     <h1>🐄 Welcome to Pashudhan AI</h1>
-    <p style="font-size:20px;">
+    <p style="font-size:20px; margin-top:10px;">
         AI-powered cattle breed identification system
     </p>
 </div>
@@ -184,8 +318,8 @@ with col2:
     st.markdown("""
     <div class="card">
         <h2>🔍 Predict Cattle Breed</h2>
-        <p>
-            Upload an image of cattle and let our AI model identify the breed
+        <p style="font-size:16px;">
+            Upload a cattle image and let our AI model identify the breed
             instantly with high accuracy.
         </p>
     </div>
@@ -193,7 +327,7 @@ with col2:
 
     st.write("")
 
-    if st.button("🚀 Start Prediction", key="predict_btn"):
+    if st.button("🚀 Start Prediction"):
         st.switch_page("pages/6_Breed_Prediction.py")
 
 # ------------------ INFO CARDS ------------------

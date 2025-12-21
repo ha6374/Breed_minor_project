@@ -534,11 +534,11 @@ st.markdown("""
 st.markdown('<div style="text-align:center; margin-top:3rem;">', unsafe_allow_html=True)
 
 # Cow / Splash Image (local preferred)
-# splash_path = os.path.join(os.path.dirname(__file__), "..", "assets", "splash.gif")
+splash_path = os.path.join(os.path.dirname(__file__), "..", "assets", "splash.gif")
 logo_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
 
-if os.path.exists(logo_path):
-    st.image(logo_path, width=350)
+if os.path.exists(splash_path):
+    st.image(splash_path, width=350)
 elif os.path.exists(logo_path):
     st.image(logo_path, width=300)
 else:

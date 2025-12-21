@@ -1,23 +1,23 @@
-import streamlit as st
-import time
+# import streamlit as st
+# import time
 
-st.set_page_config(
-    page_title="Welcome | Pashudhan AI",
-    page_icon="🐄",
-    layout="wide"
-)
+# st.set_page_config(
+#     page_title="Welcome | Pashudhan AI",
+#     page_icon="🐄",
+#     layout="wide"
+# )
 
-st.markdown("""
-    <div style="text-align:center; margin-top:80px;">
-        <img src="https://i.imgur.com/9B1xU6X.gif" width="280">
-        <h1 style="color:#4a4a4a; font-size:42px;">🐄 Pashudhan AI</h1>
-        <p style="font-size:22px;">Smart Cattle Breed Prediction System</p>
-    </div>
-""", unsafe_allow_html=True)
+# st.markdown("""
+#     <div style="text-align:center; margin-top:80px;">
+#         <img src="https://i.imgur.com/9B1xU6X.gif" width="280">
+#         <h1 style="color:#4a4a4a; font-size:42px;">🐄 Pashudhan AI</h1>
+#         <p style="font-size:22px;">Smart Cattle Breed Prediction System</p>
+#     </div>
+# """, unsafe_allow_html=True)
 
-time.sleep(2)
+# time.sleep(2)
 
-st.switch_page("pages/2_Login.py")
+# st.switch_page("pages/2_Login.py")
 
 # # # # import streamlit as st
 # # # # import time
@@ -493,4 +493,70 @@ st.switch_page("pages/2_Login.py")
 # # -------------------------
 # else:
 #     st.switch_page("pages/2_Login.py")
+
+import streamlit as st
+import os
+
+st.set_page_config(
+    page_title="Welcome | Pashudhan AI",
+    page_icon="🐄",
+    layout="wide"
+)
+
+# ---------- Styles ----------
+st.markdown("""
+<style>
+    .welcome-title {
+        font-size: 42px;
+        font-weight: 800;
+        background: linear-gradient(90deg, #00b09b, #96c93d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .get-started-btn button {
+        background-color: #00b09b;
+        color: white;
+        font-size: 18px;
+        padding: 0.75rem 2.5rem;
+        border-radius: 12px;
+        border: none;
+        font-weight: 600;
+        transition: 0.3s ease;
+    }
+    .get-started-btn button:hover {
+        background-color: #01947c;
+        transform: scale(1.05);
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# ---------- UI ----------
+st.markdown('<div style="text-align:center; margin-top:3rem;">', unsafe_allow_html=True)
+
+# Cow / Splash Image (local preferred)
+# splash_path = os.path.join(os.path.dirname(__file__), "..", "assets", "splash.gif")
+logo_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
+
+if os.path.exists(splash_path):
+    st.image(splash_path, width=350)
+elif os.path.exists(logo_path):
+    st.image(logo_path, width=300)
+else:
+    st.markdown("<h1>🐄</h1>", unsafe_allow_html=True)
+
+st.markdown('<h1 class="welcome-title">Pashudhan AI</h1>', unsafe_allow_html=True)
+st.markdown(
+    "<p style='font-size:22px;'>Smart Livestock Breed Identification — powered by AI</p>",
+    unsafe_allow_html=True
+)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+# ---------- Get Started Button ----------
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    if st.button("🚀 Get Started", key="get_started"):
+        st.switch_page("pages/2_Login.py")
+
+st.markdown("</div>", unsafe_allow_html=True)
 

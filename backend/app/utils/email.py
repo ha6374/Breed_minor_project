@@ -78,7 +78,14 @@ def send_reset_email(to_email: str, reset_link: str):
         """
     }
 
-    response = requests.post(RESEND_URL, headers=headers, json=payload)
+    # response = requests.post(RESEND_URL, headers=headers, json=payload)
+    response = requests.post(
+    RESEND_URL,
+    headers=headers,
+    json=payload,
+    timeout=10   # ⬅️ MUST ADD
+)
+
 
     if response.status_code not in (200, 201):
         raise Exception(f"Resend error: {response.text}")

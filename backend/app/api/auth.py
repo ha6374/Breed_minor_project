@@ -240,8 +240,41 @@ def forgot_password(request: ForgotPasswordRequest):
 
     # Send email with reset link
     # reset_link = f"http://localhost:8501/8_reset_password?token={token}  # Frontend URL
-    reset_link = f"https://breed-minor-project.streamlit.app/4_Forgot_Password?token={token}"
+    reset_link = f"https://breed-minor-project.streamlit.app/8_Reset_Password?token={token}"
     
     send_reset_email(to_email=user.email, reset_link=reset_link)
 
     return {"message": "If the email exists, a reset link was sent."}
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    password: str
+
+
+@router.post("/reset-password")
+def reset_password(request: ResetPasswordRequest, db: Session = Depends(get_session)):
+    try:
+        payload = jwt.decode(
+            request.token,
+            settings.SECRET_KEY,
+            algorithms=["HS256"]
+        )
+
+        user_id = payload.get("user_id")
+        if not user_id:
+            raise HTTPException(status_code=400, detail="Invalid token")
+
+        user = db.get(User, user_id)
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+
+        user.hashed_password = hash_password(request.password)
+        db.add(user)
+        db.commit()
+
+        return {"message": "Password reset successful"}
+
+    except JWTError:
+        raise HTTPException(status_code=400, detail="Token expired or invalid")
+

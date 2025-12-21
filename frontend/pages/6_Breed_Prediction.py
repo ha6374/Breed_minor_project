@@ -89,19 +89,19 @@ if uploaded_file:
         st.write(f"**{item['breed']}** — {item['confidence']*100:.2f}%")
         st.progress(min(1.0, item["confidence"]))
 
-import streamlit as st
+# import streamlit as st
 
-st.set_page_config(page_title="Breed Prediction", page_icon="🔍")
+# st.set_page_config(page_title="Breed Prediction", page_icon="🔍")
 
-if "token" not in st.session_state:
-    st.switch_page("pages/2_Login.py")
+# if "token" not in st.session_state:
+#     st.switch_page("pages/2_Login.py")
 
-st.title("🔍 Breed Prediction")
+# st.title("🔍 Breed Prediction")
 
-st.info("Model integration yaha aayega")
+# st.info("Model integration yaha aayega")
 
-if st.button("⬅ Back to Dashboard"):
-    st.switch_page("pages/5_Dashboard.py")
+# if st.button("⬅ Back to Dashboard"):
+#     st.switch_page("pages/5_Dashboard.py")
 
 # # import streamlit as st
 # # from utils.api_helper import predict

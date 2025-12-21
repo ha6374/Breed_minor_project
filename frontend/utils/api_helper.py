@@ -178,13 +178,29 @@ def signup(username: str, email: str, password: str):
         return None
 
 
+# def login(email: str, password: str):
+#     try:
+#         return requests.post(
+#             f"{BACKEND_URL}/auth/login",
+#             json={                      # ✅ FIX
+#                 "email": email,
+#                 "password": password
+#             },
+#             timeout=10,
+#         )
+#     except Exception as e:
+#         print("Login error:", e)
+#         return None
 def login(email: str, password: str):
     try:
         return requests.post(
             f"{BACKEND_URL}/auth/login",
-            json={                      # ✅ FIX
-                "email": email,
+            data={                     # ✅ MUST be data=
+                "username": email,    # ✅ backend treats this as email
                 "password": password
+            },
+            headers={
+                "Content-Type": "application/x-www-form-urlencoded"
             },
             timeout=10,
         )

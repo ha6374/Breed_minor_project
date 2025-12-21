@@ -321,16 +321,16 @@
 #     #           st.session_state.page = "6_Breed_Prediction"
 #     #           st.rerun()
 #     if st.button("🔍 Predict Breed", key="predict_dashboard"):
-        st.switch_page("pages/6_Breed_Prediction.py")
+    #     st.switch_page("pages/6_Breed_Prediction.py")
         
         
 
     
-    st.markdown("---")
-    st.markdown(
-        "<p style='text-align:center; color:gray;'>Powered by AI | Developed with ❤️ by Beed Brigade</p>",
-        unsafe_allow_html=True,
-    )
+    # st.markdown("---")
+    # st.markdown(
+    #     "<p style='text-align:center; color:gray;'>Powered by AI | Developed with ❤️ by Beed Brigade</p>",
+    #     unsafe_allow_html=True,
+    # )
 # # # import streamlit as st
 # # # import time
 

@@ -210,28 +210,44 @@ def login(email: str, password: str):
 
 
 # --- FORGOT / RESET PASSWORD ---
+# def forgot_password(email: str):
+#     try:
+#         return requests.post(
+#             f"{BACKEND_URL}/auth/forgot-password",
+#             json={"email": email},
+#             timeout=10
+#         )
+#     except Exception as e:
+#         print("Forgot password error:", e)
+#         return None
+
+
+# def reset_password(token: str, new_password: str):
+#     try:
+#         return requests.post(
+#             f"{BACKEND_URL}/auth/reset-password",
+#             json={"token": token, "password": new_password},
+#             timeout=10
+#         )
+#     except Exception as e:
+#         print("Reset password error:", e)
+#         return None
+# utils/api_helper.py
+
 def forgot_password(email: str):
     try:
-        return requests.post(
+        res = requests.post(
             f"{BACKEND_URL}/auth/forgot-password",
             json={"email": email},
             timeout=10
         )
+        if res.status_code == 200:
+            return True, res.json().get("message", "Reset link sent")
+        else:
+            return False, res.text
     except Exception as e:
         print("Forgot password error:", e)
-        return None
-
-
-def reset_password(token: str, new_password: str):
-    try:
-        return requests.post(
-            f"{BACKEND_URL}/auth/reset-password",
-            json={"token": token, "password": new_password},
-            timeout=10
-        )
-    except Exception as e:
-        print("Reset password error:", e)
-        return None
+        return False, str(e)
 
 
 # --- PROFILE ---

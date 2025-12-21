@@ -234,21 +234,38 @@ def login(email: str, password: str):
 #         return None
 # utils/api_helper.py
 
+# def forgot_password(email: str):
+#     try:
+#         res = requests.post(
+#             f"{BACKEND_URL}/auth/forgot-password",
+#             json={"email": email},
+#             timeout=10
+#         )
+#         if res.status_code == 200:
+#             return True, res.json().get("message", "Reset link sent")
+#         else:
+#             return False, res.text
+#     except Exception as e:
+#         print("Forgot password error:", e)
+#         return False, str(e)
 def forgot_password(email: str):
     try:
         res = requests.post(
             f"{BACKEND_URL}/auth/forgot-password",
             json={"email": email},
-            timeout=10
+            timeout=30   # ⬅️ increased timeout
         )
+
         if res.status_code == 200:
-            return True, res.json().get("message", "Reset link sent")
+            return True, res.json().get(
+                "message",
+                "If the email exists, a reset link was sent."
+            )
         else:
             return False, res.text
-    except Exception as e:
-        print("Forgot password error:", e)
-        return False, str(e)
 
+    except Exception as e:
+        return False, str(e)
 
 # --- PROFILE ---
 def get_user_profile(token: str):

@@ -62,6 +62,30 @@
 
 # st.markdown("</div>", unsafe_allow_html=True)
 
+# import streamlit as st
+# from utils.api_helper import signup
+
+# st.set_page_config(page_title="Signup", page_icon="📝")
+
+# st.title("📝 Create Account")
+
+# username = st.text_input("Username")
+# email = st.text_input("Email")
+# password = st.text_input("Password", type="password")
+
+# if st.button("Signup"):
+#     response = signup(username, email, password)
+
+#     if response is None:
+#         st.error("❌ Server not responding.")
+#         st.stop()
+
+#     if response.status_code in (200, 201):
+#         st.success("✅ Account created successfully!")
+#         st.switch_page("pages/2_Login.py")
+#     else:
+#         st.error("❌ Signup failed! Try again.")
+
 import streamlit as st
 from utils.api_helper import signup
 
@@ -77,12 +101,19 @@ if st.button("Signup"):
     response = signup(username, email, password)
 
     if response is None:
-        st.error("❌ Server not responding.")
+        st.error("❌ Server not responding. Please try again later.")
         st.stop()
 
-    if response.status_code in (200, 201):
-        st.success("✅ Account created successfully!")
+    if response.status_code == 200:
+        st.success("✅ Account created successfully! Please login.")
         st.switch_page("pages/2_Login.py")
     else:
-        st.error("❌ Signup failed! Try again.")
+        # 🔥 SHOW REAL BACKEND ERROR
+        try:
+            error_msg = response.json().get("detail", "Signup failed.")
+        except Exception:
+            error_msg = "Signup failed."
+
+        st.error(f"❌ {error_msg}")
+
 

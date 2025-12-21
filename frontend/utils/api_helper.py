@@ -344,3 +344,22 @@ def upload_profile_image(token: str, image_file):
         print("Profile upload error:", e)
         return None
 
+def reset_password(token: str, new_password: str):
+    try:
+        res = requests.post(
+            f"{BACKEND_URL}/auth/reset-password",
+            json={
+                "token": token,
+                "password": new_password
+            },
+            timeout=30
+        )
+
+        if res.status_code == 200:
+            return True, res.json().get("message", "Password reset successful")
+        else:
+            return False, res.text
+
+    except Exception as e:
+        return False, str(e)
+
